@@ -4,30 +4,9 @@ import matplotlib.pyplot as plt
 import pandas
 import seaborn as sns
 import time
-import multiprocessing as mp
 import numpy as np
 import progressbar
-
-def estimate_pi(n):
-    """Monte carlo estimation of pi; based on
-    ratio between area in quarter circle vs unit square"""
-    points_out = []
-    points_in = []
-    for i in range(n):
-        x = random.uniform(0,1)
-        y = random.uniform(0,1)
-        if math.sqrt(x**2 + y**2) <= 1:
-            points_in.append((x,y))
-        else:
-            points_out.append((x,y))
-    est_pi = (len(points_in) / (len(points_out) + len(points_in))) * 4
-    return est_pi
-
-def estimate_pi_multi_proc(n, nproc=4):
-    n_per = int(round(n / nproc))
-    pool = mp.Pool(nproc)
-    with pool:
-        return(np.mean(pool.map(estimate_pi, [n_per]*nproc)))
+from estimate_pi_multi_proc import estimate_pi, estimate_pi_multi_proc
 
 def plot_estimates():
     # Plot the estimate vs number of samples
@@ -75,5 +54,4 @@ def plot_estimates():
                  ax=axes[1])
     fig.savefig("plot.png")
 
-# estimate_pi_multi_proc(1e5, nproc=8)
 plot_estimates()
