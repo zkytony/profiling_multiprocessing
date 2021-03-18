@@ -31,7 +31,7 @@ def estimate_pi_multi_proc(n, nproc=4):
 
 def plot_estimates():
     # Plot the estimate vs number of samples
-    nsamples = [10, 30, 50, 80, 100, 200, 500, 700, 1e3, 2e3, 5e3, 7e3, 1e4]
+    nsamples = [100, 1e3, 1e4]#10, 30, 50] #80, 100, 200, 500, 700, 1e3, 2e3, 5e3, 7e3, 1e4]
     estimates = []
     for ns in nsamples:
 
